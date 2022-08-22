@@ -1,0 +1,55 @@
+@use "sass:map";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/utilities";
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "width": map-merge(
+      map-get($utilities, "width"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "width"), "values"),
+          (10: 10%, 33: calc(100% / 3), 66: calc(200% / 3))
+        ),
+      ),
+    ),
+  )
+);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "height": map-merge(
+      map-get($utilities, "height"),
+      (
+        values: map-merge(
+          map-get(map-get($utilities, "height"), "values"),
+          (10: 10%, 33: calc(100% / 3), 66: calc(200% / 3))
+        ),
+      ),
+    ),
+  )
+);
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+:root {
+    --bs-body-bg: #{map.get($theme-colors, "dark")};
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body, html, #root {
+    width: 100vw;
+    height: 100vh;
+}
+
+.block {
+}
