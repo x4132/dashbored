@@ -11,17 +11,17 @@ export default function Clock() {
     }
 
     useEffect(() => {
-        interval = setInterval(update, 100/6);
+        interval = setInterval(update, 100 / 6);
 
         return () => {
             clearInterval(interval);
         }
     }, [])
-    
-    return (
+
+    return (/*style={{background: `linear-gradient(90deg, #f8f9fa 50%, #212529 50%)`, color: `#f8f9fa` }}*/
         <Block className="w-33 d-flex justify-content-center align-items-center flex-column" >
-            <h1 style={{background: `linear-gradient(90deg, )`}} >{date.toLocaleString('default', {hour12: true, hour: "2-digit", minute: "2-digit", second: "2-digit"})}</h1>
-            <h3>{date.toLocaleString('default', {month: "long", day: "numeric", weekday: "short", year: "numeric"})}</h3>
+            <h1>{date.toLocaleString('default', { hour12: true, hour: "2-digit", minute: "2-digit", second: "2-digit" })}</h1>
+            <h3>{date.toLocaleString('default', { month: "long", day: "numeric", weekday: "short", year: "numeric" })}</h3>
         </Block>
     )
 

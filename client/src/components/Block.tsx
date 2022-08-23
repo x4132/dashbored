@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function Block({ children, className, ...rest}: {children: React.ReactNode, className: string}) {
+interface BlockType extends React.HTMLAttributes<HTMLDivElement> {}
+
+export default function Block({ children, className, ...rest }: BlockType) {
     return (
         <div className={`block p-4 border ${className}`} {...rest} >
             {children}
