@@ -41,17 +41,19 @@ app.get("/api/shopifystatus", (req: Request, res: Response) => {
   }
 }`
     }
-  }).then(result => {
-    res.status(200);
-    res.type("application/json");
-    res.end(JSON.stringify(result.data.data.status.components));
-    return;
-  }).catch(reject => {
-    res.status(500);
-    res.end();
-    throw new Error(reject);
   })
-})
+    .then(resolve => {
+      res.status(200);
+      res.type("application/json");
+      res.end(JSON.stringify(resolve.data.data.status.components));
+      return;
+    })
+    .catch(reject => {
+      res.status(500);
+      res.end();
+      console.error(reject);
+    })
+});
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`)
