@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
 import os from "os";
+import path from "path";
 const app = express();
 const port = 4000;
 
@@ -75,7 +76,7 @@ app.get("/api/amazonstatus", (req: Request, res: Response) => {
 })
 
 app.get("/api/sysinfo", (req: Request, res: Response) => {
-  var output: any;
+  var output: any = {};
   output.hostname = os.hostname();
   output.cpus = os.cpus();
   output.freemem = os.freemem();
@@ -85,6 +86,12 @@ app.get("/api/sysinfo", (req: Request, res: Response) => {
   res.status(200);
   res.type("application/json");
   res.end(JSON.stringify(output));
+})
+
+app.use("/assets", express.static("../client/dist/assets/"))
+
+app.get("/", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "../../client/dist/index.html"))
 })
 
 app.listen(port, () => {
